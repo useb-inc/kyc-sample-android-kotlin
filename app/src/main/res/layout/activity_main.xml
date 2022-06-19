@@ -49,11 +49,12 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="140px"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="150px"
             android:layout_marginRight="150px">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="홍길동"/>
@@ -79,12 +80,13 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
-            android:layout_height="140px"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="150px">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="290px"
                 android:layout_height="wrap_content"
+                android:id="@+id/year"
                 android:hint="1990"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,9 +99,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="wrap_content"
-                android:layout_height="140px">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/month"
                     android:layout_width="200px"
                     android:layout_height="wrap_content"
                     android:hint="01"/>
@@ -114,9 +117,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="wrap_content"
-                android:layout_height="140px">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/day"
                     android:layout_width="200px"
                     android:layout_height="wrap_content"
                     android:hint="01"/>
@@ -138,11 +142,12 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="140px"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="150px"
             android:layout_marginRight="150px">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="01012345678"/>
@@ -163,11 +168,12 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="140px"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="150px"
             android:layout_marginRight="150px">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="email@address.com"/>
@@ -175,8 +181,8 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
-            android:layout_height="140px"
-            android:id="@+id/button1"
+            android:layout_height="wrap_content"
+            android:id="@+id/run_button"
             android:layout_marginTop="70px"
             android:layout_marginLeft="150px"
             android:layout_marginRight="150px"
@@ -185,6 +191,4 @@
             android:text="Run" />
 
     </LinearLayout>
-
-ß
 </androidx.constraintlayout.widget.ConstraintLayout>
