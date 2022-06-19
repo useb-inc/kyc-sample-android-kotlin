@@ -1,11 +1,17 @@
 package com.example.kyc_kotlin_sample;
 
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_web_view.*
 import org.json.JSONObject
 import java.net.URLEncoder
@@ -39,12 +45,36 @@ class  WebViewActivity : AppCompatActivity() {
                     handler.post {
                         webview.loadUrl("javascript:alcherakycreceive('" + encodedData +"')")
                     }
+
+                    // 카메라 권한 요청
+                    val cameraPermissionCheck = ContextCompat.checkSelfPermission(this@WebViewActivity, android.Manifest.permission.CAMERA)
+                    if (cameraPermissionCheck != PackageManager.PERMISSION_GRANTED) { // 권한이 없는 경우
+                        ActivityCompat.requestPermissions(this@WebViewActivity, arrayOf(android.Manifest.permission.CAMERA), 1000)
+                    } else { //권한이 있는 경우
+                        val REQUEST_IMAGE_CAPTURE = 1
+                        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+                            takePictureIntent.resolveActivity(packageManager)?.also {
+                                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1000) {
+            if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this@WebViewActivity, "카메라/갤러리 접근 권한이 없습니다. 권한 허용 후 이용해주세요. no access permission for camera and gallery.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     override fun onBackPressed() {
+
         if (webview.canGoBack())
             webview.goBack()
         else
