@@ -30,20 +30,22 @@ class WebBridge {
         val close = "{\"result\": \"close\"}"
 
         val decodedData = decodedReceiveData(data)
-        if(decodedData.toString() == success)
+        if(decodedData == success)
             Log.d("success", "KYC 작업이 성공했습니다.")
-        else if(decodedData.toString() == failed)
+        else if(decodedData == failed)
             Log.d("failed", "KYC 작업이 실패했습니다.")
-        else if(decodedData.toString() == complete)
+        else if(decodedData == complete)
             Log.d("complete", "KYC가 완료되었습니다.")
-        else if(decodedData.toString() == close)
+        else if(decodedData == close)
             Log.d("close", "KYC가 완료되지 않았습니다.")
+        else
+            Log.d("decoding failed", "KYC 응답 메세지 분석에 실패했습니다.")
     }
 
-    private fun decodedReceiveData(data:String){
+    private fun decodedReceiveData(data: String): String {
 
-        var decoded : String = data.fromBase64()
-        var decodedText = URLDecoder.decode(decoded, "UTF-8")
+        var decoded: String = data.fromBase64()
+        return URLDecoder.decode(decoded, "UTF-8")
     }
 
     private fun String.fromBase64(): String{
