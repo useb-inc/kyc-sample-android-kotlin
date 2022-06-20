@@ -30,7 +30,7 @@ class  WebViewActivity : AppCompatActivity() {
         webview.settings.javaScriptEnabled = true
         webview.webViewClient = WebViewClient()
         webview.webChromeClient = WebChromeClient()
-        webview.addJavascriptInterface(WebBridge(), "android")
+        webview.addJavascriptInterface(WebBridge(), "alcherakyc")
 
         // 인코딩 - javascript의 encodeURIComponent메소드를 java형식으로 만듦
         var encodedJson = URLEncoder.encode(getData().toString(), StandardCharsets.UTF_8.name())
@@ -83,21 +83,21 @@ class  WebViewActivity : AppCompatActivity() {
 
     private fun getData(): JSONObject {
 
-        val birth = intent.getStringExtra("birth")
+        val birthday = intent.getStringExtra("birthday")
         val name = intent.getStringExtra("name")
         val phoneNumber = intent.getStringExtra("phoneNumber")
         val email = intent.getStringExtra("email")
-        return dataToJson(birth, name, phoneNumber, email)
+        return dataToJson(birthday, name, phoneNumber, email)
     }
 
-    private fun dataToJson (birth:String?, name:String?, phoneNumber:String?, email:String?) : JSONObject {
+    private fun dataToJson (birthday:String?, name:String?, phoneNumber:String?, email:String?) : JSONObject {
 
         val jsonObject = JSONObject()
         jsonObject.put("customer_id", "12")
         jsonObject.put("id", "demoUser")
         jsonObject.put("key", "demoUser0000!")
         jsonObject.put("name", name)
-        jsonObject.put("birthday",  birth)
+        jsonObject.put("birthday",  birthday)
         jsonObject.put("phone_number", phoneNumber)
         jsonObject.put("email", email)
 

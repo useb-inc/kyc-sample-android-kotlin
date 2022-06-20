@@ -34,14 +34,14 @@ class MainActivity : AppCompatActivity() {
         val yearStr: String = binding.year.text.toString()
         val monthStr: String = binding.month.text.toString()
         val dayStr: String = binding.day.text.toString()
-        val birth = if(yearStr == "" || monthStr == "" || dayStr == "") ""
+        val birthday = if(yearStr == "" || monthStr == "" || dayStr == "") ""
         else "$yearStr-$monthStr-$dayStr"
 
         val name : String= binding.name.text.toString()
         val phoneNumber : String= binding.phoneNumber.text.toString()
         val email : String= binding.email.text.toString()
 
-        secondIntent.putExtra("birth",birth)
+        secondIntent.putExtra("birthday",birthday)
         secondIntent.putExtra("name",name)
         secondIntent.putExtra("phoneNumber",phoneNumber)
         secondIntent.putExtra("email",email)
