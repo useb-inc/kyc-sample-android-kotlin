@@ -22,6 +22,7 @@ class  WebViewActivity : AppCompatActivity() {
 //    private val TAG2 = "WebViewActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
 
@@ -34,8 +35,7 @@ class  WebViewActivity : AppCompatActivity() {
 
         // 인코딩 - javascript의 encodeURIComponent메소드를 java형식으로 만듦
         var encodedJson = URLEncoder.encode(getData().toString(), StandardCharsets.UTF_8.name())
-        encodeURIComponent(encodedJson)
-        var encodedData: String = encodedJson.toBase64()
+        var encodedData = encodeURIComponent(encodedJson).toBase64()
 //        Log.d("encoded : ", encodedData)
 
         webview.run {
