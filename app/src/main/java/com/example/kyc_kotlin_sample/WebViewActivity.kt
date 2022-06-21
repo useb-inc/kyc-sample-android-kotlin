@@ -84,6 +84,7 @@ class  WebViewActivity : AppCompatActivity() {
     }
 
     private fun encodeJson(data: String): String {
+
         var data = data
         data = encodeURIComponent(getData().toString())
         return Base64.encodeToString(data.toByteArray(), 0)
