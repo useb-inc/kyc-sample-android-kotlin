@@ -14,10 +14,11 @@ class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // 바인딩 설정
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         val yearStr: String = binding.year.text.toString()
         val monthStr: String = binding.month.text.toString()
         val dayStr: String = binding.day.text.toString()
-        val birthday = if(yearStr == "" || monthStr == "" || dayStr == "") ""
+        val birthday = if(yearStr.isEmpty() || monthStr.isEmpty() || dayStr.isEmpty()) ""
         else "$yearStr-$monthStr-$dayStr"
 
         val name : String= binding.name.text.toString()
