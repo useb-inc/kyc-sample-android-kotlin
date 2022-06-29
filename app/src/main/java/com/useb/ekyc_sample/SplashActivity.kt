@@ -1,4 +1,4 @@
-package com.example.kyc_kotlin_sample
+package com.useb.ekyc_sample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

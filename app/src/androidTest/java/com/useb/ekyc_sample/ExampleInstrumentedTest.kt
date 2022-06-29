@@ -1,4 +1,4 @@
-package com.example.kyc_kotlin_sample
+package com.useb.ekyc_sample
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.kyc_kotlin_sample", appContext.packageName)
+        assertEquals("com.useb.ekyc_sample", appContext.packageName)
     }
 }
