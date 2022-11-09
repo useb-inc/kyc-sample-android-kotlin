@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "kyc-kotlin-sample"
-include ':app'
+rootProject.name = "kyc_sample_android_kotlin"
+include ':kycSampleAndroidKotlin'
