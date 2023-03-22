@@ -1,9 +1,9 @@
 package com.useb.kyc_sample_android_kotlin
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.content.Intent
+import android.os.Bundle
 import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

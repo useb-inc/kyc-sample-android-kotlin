@@ -1,10 +1,9 @@
 package com.useb.kyc_sample_android_kotlin
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONException
-import java.lang.Exception
 
 class ReportActivity : AppCompatActivity() {
 

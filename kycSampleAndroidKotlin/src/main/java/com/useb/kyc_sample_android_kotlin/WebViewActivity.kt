@@ -1,4 +1,4 @@
-package com.useb.kyc_sample_android_kotlin;
+package com.useb.kyc_sample_android_kotlin
 
 import android.Manifest
 import android.content.Intent
@@ -20,11 +20,11 @@ import java.io.UnsupportedEncodingException
 import java.net.URLDecoder
 import java.net.URLEncoder
 
-class  WebViewActivity : AppCompatActivity() {
+class WebViewActivity : AppCompatActivity() {
 
-    private var binding:ActivityWebViewBinding?=null
-    private var handler:Handler = Handler()
-    private var webview:WebView? = null
+    private var binding: ActivityWebViewBinding? = null
+    private var handler: Handler = Handler()
+    private var webview: WebView? = null
     private var result = ""
     private var detail = ""
 
@@ -47,7 +47,7 @@ class  WebViewActivity : AppCompatActivity() {
 
         // 사용자 데이터 인코딩
         val userInfo = ""
-        val encodedUserInfo:String = encodeJson(userInfo)
+        val encodedUserInfo: String = encodeJson(userInfo)
 
         // POST
         postUserInfo(url, encodedUserInfo)
@@ -58,7 +58,7 @@ class  WebViewActivity : AppCompatActivity() {
         //super.onBackPressed();
     }
 
-    private fun postUserInfo(url : String, encodedUserInfo : String){
+    private fun postUserInfo(url: String, encodedUserInfo: String) {
 
         handler.post { // 카메라 권한 요청
             cameraAuthRequest()
@@ -80,21 +80,26 @@ class  WebViewActivity : AppCompatActivity() {
         return dataToJson(birthday, name, phoneNumber, email)
     }
 
-    private fun dataToJson (birthday:String?, name:String?, phoneNumber:String?, email:String?) : JSONObject {
+    private fun dataToJson(
+        birthday: String?,
+        name: String?,
+        phoneNumber: String?,
+        email: String?
+    ): JSONObject {
 
         var jsonObject = JSONObject()
         jsonObject.put("customer_id", "12")
         jsonObject.put("id", "demoUser")
         jsonObject.put("key", "demoUser0000!")
         jsonObject.put("name", name)
-        jsonObject.put("birthday",  birthday)
+        jsonObject.put("birthday", birthday)
         jsonObject.put("phone_number", phoneNumber)
         jsonObject.put("email", email)
 
         return jsonObject
     }
 
-    private fun encodeURIComponent(encoded:String):String{
+    private fun encodeURIComponent(encoded: String): String {
 
         var encodedURI = URLEncoder.encode(encoded, "UTF-8")
         encodedURI = encodedURI.replace("\\+".toRegex(), "%20")
@@ -109,9 +114,9 @@ class  WebViewActivity : AppCompatActivity() {
     private fun encodeJson(data: String): String {
 
         var data = data
-        var encodedData:String? = null
+        var encodedData: String? = null
         data = encodeURIComponent(getData().toString())
-        encodedData = Base64.encodeToString(data!!.toByteArray(), 0)
+        encodedData = Base64.encodeToString(data.toByteArray(), 0)
         return encodedData
     }
 
@@ -210,7 +215,7 @@ class  WebViewActivity : AppCompatActivity() {
         return decodedURI
     }
 
-    private fun cameraAuthRequest(){
+    private fun cameraAuthRequest() {
 
         webview = binding!!.webview
         val ws = webview!!.settings
@@ -241,7 +246,11 @@ class  WebViewActivity : AppCompatActivity() {
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 1000) {
