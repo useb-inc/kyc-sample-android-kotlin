@@ -58,15 +58,6 @@ class  WebViewActivity : AppCompatActivity() {
         //super.onBackPressed();
     }
 
-    // webview가 닫히면 result를 보여주는 화면으로 전환
-    public override fun onStop() {
-        super.onStop()
-        val intent = Intent(applicationContext, ReportActivity::class.java)
-        intent.putExtra("detail", detail)
-        intent.putExtra("result", result)
-        startActivity(intent)
-    }
-
     private fun postUserInfo(url : String, encodedUserInfo : String){
 
         handler.post { // 카메라 권한 요청
@@ -154,6 +145,12 @@ class  WebViewActivity : AppCompatActivity() {
             result = "KYC가 완료되지 않았습니다."
             Log.d("close", "KYC가 완료되지 않았습니다.")
         }
+
+        val intent = Intent(applicationContext, ReportActivity::class.java)
+        intent.putExtra("detail", detail)
+        intent.putExtra("result", result)
+        startActivity(intent)
+
         finish()
     }
 
