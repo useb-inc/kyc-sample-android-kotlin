@@ -32,7 +32,10 @@ class WebViewActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
-        val url = "https://kyc.useb.co.kr/auth"
+        // 디버깅 실정
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true);
+        }
 
         // 바인딩 설정
         binding = ActivityWebViewBinding.inflate(layoutInflater)
@@ -45,18 +48,27 @@ class WebViewActivity : AppCompatActivity() {
         webview!!.webChromeClient = WebChromeClient()
         webview!!.addJavascriptInterface(this, "alcherakyc")
 
+        // 카메라 프리뷰 성능
+        webview!!.clearCache(true);
+        webview!!.clearHistory();
+
         // 사용자 데이터 인코딩
         val userInfo = ""
         val encodedUserInfo: String = encodeJson(userInfo)
 
+        val url = intent.getStringExtra("url")
+
+
         // POST
-        postUserInfo(url, encodedUserInfo)
+        if (url != null) {
+            postUserInfo(url, encodedUserInfo)
+        }
     }
 
-    // WebView 액티비티에서 뒤로가기 버튼 막기
-    override fun onBackPressed() {
-        //super.onBackPressed();
-    }
+//    // WebView 액티비티에서 뒤로가기 버튼 막기
+//    override fun onBackPressed() {
+//        //super.onBackPressed();
+//    }
 
     private fun postUserInfo(url: String, encodedUserInfo: String) {
 
@@ -77,14 +89,19 @@ class WebViewActivity : AppCompatActivity() {
         var name = intent.getStringExtra("name")
         var phoneNumber = intent.getStringExtra("phoneNumber")
         var email = intent.getStringExtra("email")
-        return dataToJson(birthday, name, phoneNumber, email)
+        val isWasmOCRMode = if (intent.getBooleanExtra("wasmOcrMode", false)) "true" else "false"
+        val isWasmSSAMode = if (intent.getBooleanExtra("wasmSsaMode", false)) "true" else "false"
+
+        return dataToJson(birthday, name, phoneNumber, email, isWasmOCRMode, isWasmSSAMode);
     }
 
     private fun dataToJson(
         birthday: String?,
         name: String?,
         phoneNumber: String?,
-        email: String?
+        email: String?,
+        isWasmOCRMode: String,
+        isWasmSSAMode: String
     ): JSONObject {
 
         var jsonObject = JSONObject()
@@ -95,6 +112,8 @@ class WebViewActivity : AppCompatActivity() {
         jsonObject.put("birthday", birthday)
         jsonObject.put("phone_number", phoneNumber)
         jsonObject.put("email", email)
+        jsonObject.put("isWasmOCRMode", isWasmOCRMode);
+        jsonObject.put("isWasmSSAMode", isWasmSSAMode);
 
         return jsonObject
     }

@@ -31,11 +31,17 @@ class MainActivity : AppCompatActivity() {
         val name = binding!!.name.text.toString()
         val phoneNumber = binding!!.phoneNumber.text.toString()
         val email = binding!!.email.text.toString()
+        val url = binding!!.url.text.toString()
+        val wasmOcrMode = binding!!.wasmOcrMode.isChecked
+        val wasmSsaMode = binding!!.wasmSsaMode.isChecked
         return if (isValid(email, name, phoneNumber, birthday)) {
             secondIntent.putExtra("birthday", birthday)
             secondIntent.putExtra("name", name)
             secondIntent.putExtra("phoneNumber", phoneNumber)
             secondIntent.putExtra("email", email)
+            secondIntent.putExtra("url", url)
+            secondIntent.putExtra("wasmOcrMode", wasmOcrMode)
+            secondIntent.putExtra("wasmSsaMode", wasmSsaMode)
             true
         } else {
             false
